@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>קבוצת רכישה - כורסת עיסוי</title>
   <link rel="stylesheet" href="css/1style.css" />
+  <!-- קוד להטענת התפריט העליון מהקובץ החיצוני -->
+  <script>
+    // פונקציה לטעינת התפריט העליון מהקובץ החיצוני
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('top-navigation.html')
+        .then(response => response.text())
+        .then(data => {
+          // חילוץ תגית ה-nav מהתוכן שהתקבל
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data, 'text/html');
+          const navElement = doc.querySelector('.top-navigation');
+          const overlayElement = doc.querySelector('.overlay');
+          
+          if (navElement) {
+            // הוספת התפריט לתחילת הדף
+            document.body.insertAdjacentElement('afterbegin', navElement);
+          }
+          
+          if (overlayElement) {
+            // הוספת שכבת האפלה לדף
+            document.body.appendChild(overlayElement);
+          }
+          
+          // טעינת הקוד JavaScript מהקובץ החיצוני
+          const scriptContent = doc.querySelector('script');
+          if (scriptContent) {
+            const newScript = document.createElement('script');
+            newScript.textContent = scriptContent.textContent;
+            document.body.appendChild(newScript);
+          }
+          
+          // טעינת הסגנונות מהקובץ החיצוני
+          const styles = doc.querySelectorAll('style');
+          if (styles.length > 0) {
+            const styleElement = document.createElement('style');
+            styles.forEach(style => {
+              styleElement.textContent += style.textContent;
+            });
+            document.head.appendChild(styleElement);
+          }
+        })
+        .catch(error => console.error('שגיאה בטעינת התפריט העליון:', error));
+    });
+  </script>
   <style>
     html, body {
       background-color: #0f1c2e;
@@ -62,6 +106,143 @@
     
     .share-option.copy-link {
       background: linear-gradient(45deg, #6c757d, #495057);
+    }
+    
+    /* CSS לתפריט הניווט */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 8px 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      direction: rtl;
+      margin-bottom: 10px;
+    }
+    
+    /* לוגו */
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 30px;
+      margin-left: 10px;
+    }
+    
+    .logo-text {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #00c38c;
+    }
+    
+    /* קישורי התפריט */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links li {
+      margin: 0 12px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #00c38c;
+    }
+    
+    /* אפקט קו תחתון בעת מעבר עכבר */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #00c38c;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* כפתור המבורגר למובייל */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+    
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    /* עיצוב למסכים קטנים */
+    @media screen and (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 60px;
+        height: calc(100vh - 60px);
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 20px;
+        transition: right 0.5s ease;
+        z-index: 999;
+      }
+      
+      .nav-links li {
+        margin: 15px 0;
+      }
+      
+      .nav-links a {
+        font-size: 1.1rem;
+      }
+      
+      .nav-active {
+        right: 0;
+      }
+      
+      /* אנימציה לכפתור המבורגר */
+      .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      
+      .toggle .line2 {
+        opacity: 0;
+      }
+      
+      .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
     }
     
     .share-option.email {
@@ -427,6 +608,28 @@
 </head>
 <body>
   <div class="glass-wrapper">
+    <!-- תפריט ניווט עליון -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="logo.png" alt="לוגו" id="placeholder-logo" onerror="this.style.display='none'">
+        <span class="logo-text">קבוצת רכישה</span>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a href="index.html">דף הבית</a></li>
+        <li><a href="#about">מי אנחנו</a></li>
+        <li><a href="#products">מוצרים</a></li>
+        <li><a href="#faq">שאלות נפוצות</a></li>
+        <li><a href="#contact">צור קשר</a></li>
+      </ul>
+      
+      <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+    
     <header class="hero">
       <p class="tagline" onclick="toggleSloganModal()">🔊 יוקר המחיה לא עוצר – גם אנחנו לא! לחצו כאן להבין איך חוסכים בגדול 💡</p>
       <p class="tagline">מצטרפים עכשיו לקבוצת רכישה במחיר מפעל לפני שהזמן נגמר</p>
@@ -642,7 +845,32 @@
       if (event.target == sloganModal) {
         sloganModal.style.display = "none";
       }
+      if (event.target == shareModal) {
+        shareModal.style.display = "none";
+      }
     }
+    
+    // Navigation Menu Functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Toggle mobile navigation menu when hamburger is clicked
+    if (hamburger) {
+      hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('nav-active');
+        hamburger.classList.toggle('toggle');
+      });
+    }
+    
+    // Close mobile menu when link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('nav-active')) {
+          navLinks.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+        }
+      });
+    });
     
     // שיתוף בוואטסאפ
     function shareOnWhatsApp() {

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תפריט ניווט עליון</title>
+  <style>
+    /* עיצוב כללי */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      direction: rtl;
+      background: linear-gradient(135deg, #1a2a3a 0%, #0c1824 100%);
+      color: white;
+      min-height: 100vh;
+    }
+    
+    /* עיצוב התפריט העליון */
+    .top-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 195, 140, 0.3);
+    }
+    
+    /* לוגו */
+    .site-logo {
+      display: flex;
+      align-items: center;
+    }
+    
+    .site-logo img {
+      height: 40px;
+      margin-left: 10px;
+    }
+    
+    .site-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #00c38c;
+      text-shadow: 0 0 10px rgba(0, 195, 140, 0.3);
+    }
+    
+    /* קישורי התפריט */
+    .menu-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .menu-links li {
+      margin: 0 15px;
+      position: relative;
+    }
+    
+    .menu-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s, transform 0.2s;
+    }
+    
+    .menu-links a:hover {
+      color: #00c38c;
+      transform: translateY(-2px);
+    }
+    
+    /* אפקט קו תחתון בעת מעבר עכבר */
+    .menu-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      right: 50%;
+      background-color: #00c38c;
+      transition: all 0.3s ease;
+      transform: translateX(50%);
+    }
+    
+    .menu-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* כפתור המבורגר למובייל */
+    .mobile-toggle {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 35px;
+      height: 30px;
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .mobile-toggle span {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      display: block;
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-toggle span:nth-child(1) {
+      top: 0;
+    }
+    
+    .mobile-toggle span:nth-child(2) {
+      top: 13px;
+    }
+    
+    .mobile-toggle span:nth-child(3) {
+      bottom: 0;
+    }
+    
+    /* עיצוב למסכים קטנים */
+    @media screen and (max-width: 768px) {
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .menu-links {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        width: 80%;
+        flex-direction: column;
+        background-color: rgba(10, 25, 41, 0.95);
+        backdrop-filter: blur(10px);
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: left 0.4s ease;
+        z-index: 1000;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+        padding: 80px 0;
+      }
+      
+      .menu-links.active {
+        left: 0;
+      }
+      
+      .menu-links li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .menu-links a {
+        font-size: 1.3rem;
+        padding: 10px 20px;
+        display: block;
+      }
+      
+      .mobile-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(9px, 9px);
+      }
+      
+      .mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .mobile-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+      }
+    }
+    
+    /* דרכון כהה מעל התוכן כאשר התפריט פתוח במובייל */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(3px);
+      display: none;
+      z-index: 999;
+    }
+    
+    .overlay.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- תפריט ניווט עליון -->
+  <nav class="top-navigation">
+    <div class="site-logo">
+      <img src="img/logo.png" alt="לוגו" id="site-logo">
+      <span class="site-title">קבוצת רכישה</span>
+    </div>
+    
+    <ul class="menu-links">
+      <li><a href="index.html">דף הבית</a></li>
+      <li><a href="about.html">מי אנחנו</a></li>
+      <li><a href="products.html">מוצרים</a></li>
+      <li><a href="faq.html">שאלות נפוצות</a></li>
+      <li><a href="contact.html">צור קשר</a></li>
+    </ul>
+    
+    <button class="mobile-toggle" aria-label="תפריט">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  
+  <!-- שכבת האפלה שמופעלת כאשר התפריט פתוח במובייל -->
+  <div class="overlay"></div>
+  
+  <!-- תוכן לדוגמה -->
+  <div style="padding: 20px; text-align: center;">
+    <h1>תפריט ניווט עליון</h1>
+    <p>זהו קובץ התפריט העליון שניתן לשלב בכל דף באתר</p>
+  </div>
+  
+  <!-- קוד JavaScript לפתיחת התפריט במובייל -->
+  <script>
+    // הגדרת המשתנים
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const menuLinks = document.querySelector('.menu-links');
+    const overlay = document.querySelector('.overlay');
+    
+    // פונקציה לפתיחת וסגירת התפריט במובייל
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      menuLinks.classList.toggle('active');
+      overlay.classList.toggle('active');
+      
+      // מניעת גלילה של הדף כאשר התפריט פתוח
+      if (menuLinks.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // סגירת התפריט בלחיצה על רקע כהה
+    overlay.addEventListener('click', () => {
+      mobileToggle.classList.remove('active');
+      menuLinks.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    
+    // סגירת התפריט בלחיצה על קישור
+    document.querySelectorAll('.menu-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        menuLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</body>
+</html>
