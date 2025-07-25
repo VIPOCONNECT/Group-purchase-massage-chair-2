@@ -210,6 +210,78 @@
       font-weight: normal;
     }
     
+    .btn-how-it-works {
+      background: linear-gradient(to right, #2d4a72, #1a3251);
+      color: #ffffff;
+      border: 1px solid rgba(0, 195, 140, 0.5);
+      border-radius: 50px;
+      padding: 8px 16px;
+      margin: 5px 0;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-how-it-works:hover {
+      background: linear-gradient(to right, #375c8c, #244063);
+      box-shadow: 0 0 15px rgba(0, 195, 140, 0.3);
+    }
+    
+    /* סגנון למודאל */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+    
+    .modal-content {
+      position: relative;
+      background: rgba(31, 45, 68, 0.95);
+      border: 2px solid rgba(0, 195, 140, 0.5);
+      border-radius: 20px;
+      margin: 15% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 0 30px rgba(0, 195, 140, 0.3);
+      animation: modalopen 0.4s;
+    }
+    
+    @keyframes modalopen {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #00c38c;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .close-btn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(0, 195, 140, 0.7);
+    }
+    
+    .modal-title {
+      color: #00c38c;
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    
     @media (max-width: 768px) {
       .price-grid {
         grid-template-columns: 1fr 1fr;
@@ -283,12 +355,20 @@
       <div id="timer-message" class="timer-message"></div>
     </div>
 
-    <h2>איך זה עובד?</h2>
-    <ul class="feature-list">
-      <li>נרשמים בלי לשלם – הצטרפות חינם וללא התחייבות.</li>
-      <li>ממתינים 45 יום – אנחנו בודקים כמה משתתפים יש.</li>
-      <li>מקבלים הצעה סופית – אתם בוחרים אם לרכוש או לא. פשוט!</li>
-    </ul>
+    <button id="howItWorksBtn" class="btn-how-it-works">איך זה עובד? 🔎</button>
+    
+    <!-- מודאל "איך זה עובד" -->
+    <div id="howItWorksModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3 class="modal-title">איך קבוצת הרכישה עובדת?</h3>
+        <ul class="feature-list">
+          <li>נרשמים בלי לשלם – הצטרפות חינם וללא התחייבות.</li>
+          <li>ממתינים 45 יום – אנחנו בודקים כמה משתתפים יש.</li>
+          <li>מקבלים הצעה סופית – אתם בוחרים אם לרכוש או לא. פשוט!</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="price-grid">
       <div class="tier"><span>50 משתתפים</span><strong>₪3,500</strong></div>
@@ -324,6 +404,30 @@
     </div>
   </div>
   <script src="js/timer.js"></script>
-  <!-- הסרנו את קוד JavaScript לכפתור מאחר וכעת הוא מקשר לדף טופס -->
+  <script>
+    // פונקציונליות לחלון המודאלי "איך זה עובד"
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('howItWorksModal');
+      const btn = document.getElementById('howItWorksBtn');
+      const closeBtn = document.getElementsByClassName('close-btn')[0];
+      
+      // פותח את המודאל בלחיצה על הכפתור
+      btn.addEventListener('click', function() {
+        modal.style.display = 'block';
+      });
+      
+      // סוגר את המודאל בלחיצה על X
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+      
+      // סוגר את המודאל בלחיצה מחוץ לחלון
+      window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
