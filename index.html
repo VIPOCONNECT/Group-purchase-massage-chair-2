@@ -472,8 +472,8 @@
     </a>
     
     <div class="share-row">
-      <a href="#">שיתוף בוואטסאפ</a>
-      <a href="#">שיתוף בפייסבוק</a>
+      <a href="javascript:void(0)" onclick="shareOnWhatsApp()" class="admin-link">💬 שיתוף בוואטסאפ</a>
+      <a href="javascript:void(0)" onclick="shareOnFacebook()" class="admin-link">📱 שיתוף בפייסבוק</a>
       <a href="admin.html" class="admin-link">⚙️ ניהול קמפיין</a>
     </div>
     
@@ -516,6 +516,21 @@
       if (event.target == sloganModal) {
         sloganModal.style.display = "none";
       }
+    }
+    
+    // שיתוף בוואטסאפ
+    function shareOnWhatsApp() {
+      const shareText = "הצטרפו לקנייה קבוצתית של כורסאות עיסוי במחיר מפעל! קונים חכם - בלי לשלם עכשיו, בלי סיכונים. 🔥";
+      const shareUrl = window.location.href;
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+    
+    // שיתוף בפייסבוק
+    function shareOnFacebook() {
+      const shareUrl = window.location.href;
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+      window.open(facebookUrl, '_blank');
     }
   </script>
 </body>
