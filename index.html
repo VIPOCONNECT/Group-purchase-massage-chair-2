@@ -18,6 +18,60 @@
       text-align: center;
     }
     
+    /* Share Modal Styles */
+    .share-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .share-option {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 15px;
+      background: rgba(31, 45, 68, 0.8);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+    
+    .share-option:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .share-option.whatsapp {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+    }
+    
+    .share-option.facebook {
+      background: linear-gradient(45deg, #1877F2, #3b5998);
+    }
+    
+    .share-option.instagram {
+      background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCAF45);
+    }
+    
+    .share-option.tiktok {
+      background: linear-gradient(45deg, #000000, #EE1D52);
+    }
+    
+    .share-option.copy-link {
+      background: linear-gradient(45deg, #6c757d, #495057);
+    }
+    
+    .share-option.email {
+      background: linear-gradient(45deg, #EA4335, #DB4437);
+    }
+    
+    .share-option.sms {
+      background: linear-gradient(45deg, #5BC236, #4CAF50);
+    }
+    
     body {
       display: flex;
       justify-content: center;
@@ -400,16 +454,25 @@
       <div id="timer-message" class="timer-message"></div>
     </div>
 
-    <button id="howItWorksBtn" class="btn-how-it-works">איך זה עובד? 🔎</button>
+    <button id="howItWorksBtn" class="btn-how-it-works">איך זה באמת עובד – ולמה כולם מצטרפים? 🔎</button>
+    <p class="example-text" style="text-align: center; color: #ffcc00; margin-top: 5px; font-size: 0.9rem; font-weight: bold;">דוגמה: כורסת עיסוי במקום ב-8000 ₪</p>
     
     <!-- מודאל "איך זה עובד" -->
     <div id="howItWorksModal" class="modal">
       <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
-        <h2>איך זה עובד?</h2>
-        <p>1. <strong>נרשמים בלי לשלם</strong> – הצטרפות חינם וללא התחייבות</p>
-        <p>2. <strong>ממתינים 45 יום</strong> – אנחנו בודקים כמה משתתפים יש</p>
-        <p>3. <strong>מקבלים הצעה סופית</strong> – אתם בוחרים אם לרכוש או לא</p>
+        <h2>איך זה באמת עובד – ולמה כולם מצטרפים?</h2>
+        <p>אנחנו מעל 15 שנה עובדים מול מפעלים מהגדולים בעולם. עד היום – זה היה רק לעסקים.</p>
+        <p>אבל עכשיו? החלטנו לשנות את חוקי המשחק.</p>
+        <p>🎥 כל שבוע אנחנו מוצר חדש – בדיוק ממ"ל אנחנו מכירים באופן אישי.</p>
+        <p>💬 אנחנו דואגים לחוזים, בודקים תקנים (משרד הבריאות, FDA) ומנהלים את כל העסקה – בשבילכם.</p>
+        <p>🚢 אנחנו מייבאים את כל המכולה לישראל ומובילים עד הבית – דרך חברת שילוח מקצועית.</p>
+        <p>✅ בלי פערי תיווך. בלי סוכנים. בלי לשלם מראש.</p>
+        <p>✅ רק אם מצטרפים מספיק – כולם משלמים פחות. פשוט.</p>
+        <p>אנחנו לא רק מוכרים – אנחנו מאחדים.</p>
+        <p>אנחנו כאן כדי לעזור לכולנו לחסוך ביוקר המחיה.</p>
+        <p>💚 תנו לכוח של הקבוצה לעבוד גם בשבילכם.</p>
+        <p>הצטרפו עכשיו – בלי סיכון, ובלי להתחייב.</p>
       </div>
     </div>
   
@@ -422,7 +485,7 @@
         יוקר המחיה בארץ שובר שיאים. אנחנו משלמים יותר – ומקבלים פחות. מוצרים שמתומחרים פי 2 ו-3 ממחירם האמיתי, רק כי אנחנו קונים לבד, בארץ, דרך מתווכים.
       </p>
       <p>
-        כאן אנחנו משנים את המשחק – בקנייה קבוצתית כולנו מתאגדים יחד, ומבצעים רכישה ישירה מהמפעל – ללא חנויות, סוכנים או פערי תיווך. ככל שיותר משתתפים מצטרפים – המחיר יורד לכולם!
+        כאן אנחנו משנים את המשחק – בקנייה קבוצתית כולנו מתאגדים יחד, ומבצעים רכישה ישירה מהמפעל – ללא חנויות, סוכנים או פערי תיווך. ככל שיותר רוכשים מצטרפים – המחיר יורד לכולם!
       </p>
 
       <h2>מי אנחנו?</h2>
@@ -449,21 +512,21 @@
   </div>
 
     <div class="price-grid">
-      <div class="tier"><span>50 משתתפים</span><strong>₪3,500</strong></div>
-      <div class="tier highlight"><span>100 משתתפים</span><strong>₪3,200</strong></div>
-      <div class="tier"><span>150 משתתפים</span><strong>₪3,000</strong></div>
-      <div class="tier"><span>200 משתתפים</span><strong>₪2,800</strong></div>
+      <div class="tier"><span>50 רוכשים</span><strong>₪3,500</strong></div>
+      <div class="tier highlight"><span>100 רוכשים</span><strong>₪3,200</strong></div>
+      <div class="tier"><span>150 רוכשים</span><strong>₪3,000</strong></div>
+      <div class="tier"><span>200 רוכשים</span><strong>₪2,800</strong></div>
     </div>
 
     <div class="highlight-text">
-      🟢 <strong>ככל שיש יותר משתתפים – כולם משלמים פחות!</strong>
+      🟢 <strong>ככל שיש יותר רוכשים – כולם משלמים פחות!</strong>
     </div>
 
     <h2>למה להצטרף עכשיו?</h2>
     <ul class="feature-list">
       <li>✅ אין תשלום מראש</li>
       <li>✅ ייבוא ישיר מהמפעל – ללא פערי תיווך</li>
-      <li>✅ הנחות לפי כמות משתתפים</li>
+      <li>✅ הנחות לפי כמות רוכשים</li>
       <li>✅ לא אהבתם? לא קונים. פשוט.</li>
     </ul>
 
@@ -472,13 +535,30 @@
     </a>
     
     <div class="share-row">
-      <a href="javascript:void(0)" onclick="shareOnWhatsApp()" class="admin-link">💬 שיתוף בוואטסאפ</a>
-      <a href="javascript:void(0)" onclick="shareOnFacebook()" class="admin-link">📱 שיתוף בפייסבוק</a>
+      <a href="javascript:void(0)" onclick="openShareModal()" class="admin-link">🔄 לחץ כאן לשיתוף עם חבר</a>
       <a href="admin.html" class="admin-link">⚙️ ניהול קמפיין</a>
     </div>
     
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeShareModal()">&times;</span>
+        <h3>שיתוף עם חברים</h3>
+        <div class="share-options">
+          <a href="javascript:void(0)" onclick="shareOnWhatsApp(); closeShareModal();" class="share-option whatsapp">💬 שיתוף בוואטסאפ</a>
+          <a href="javascript:void(0)" onclick="shareOnFacebook(); closeShareModal();" class="share-option facebook">📱 שיתוף בפייסבוק</a>
+          <a href="javascript:void(0)" onclick="shareOnInstagram(); closeShareModal();" class="share-option instagram">📸 שיתוף באינסטגרם</a>
+          <a href="javascript:void(0)" onclick="shareOnTikTok(); closeShareModal();" class="share-option tiktok">🎵 שיתוף בטיקטוק</a>
+          <a href="javascript:void(0)" onclick="copyLink(); closeShareModal();" class="share-option copy-link">🔗 העתק קישור</a>
+          <a href="mailto:?subject=רכישה קבוצתית - כסא עיסוי&body=הצטרפו לרכישה קבוצתית של כסא עיסוי במחיר מפעל! לינק: https://vipoconnect.github.io/Group-purchase-massage-chair-2" class="share-option email">📧 שיתוף באימייל</a>
+          <a href="sms:?body=הצטרפו לרכישה קבוצתית של כסא עיסוי במחיר מפעל! לינק: https://vipoconnect.github.io/Group-purchase-massage-chair-2" class="share-option sms">📨 שיתוף ב-SMS</a>
+        </div>
+      </div>
+    </div>
+    
     <div class="footer">
-      🛠️ פרויקט בניהול VIPO - מתווכים בין עסקים למפעלים בסין
+      🛠️ פרויקט בניהול VIPO - מתווכים בין עסקים למפעלים בסין<br>
+      <span class="footer-links">למידע נוסף: <a href="https://vipocatalog.github.io/DIGITAL1/" target="_blank" class="site-link">VIPO Digital</a> | <a href="https://vipocatalog.github.io/LTD/?lang=he" target="_blank" class="site-link">VIPO LTD</a></span>
     </div>
   </div>
   <script src="js/timer.js"></script>
@@ -487,6 +567,52 @@
     const howItWorksModal = document.getElementById("howItWorksModal");
     const howItWorksBtn = document.getElementById("howItWorksBtn");
     const closeHowItWorksModal = document.getElementById("closeModal");
+    
+    // Share Modal functionality
+    const shareModal = document.getElementById("shareModal");
+    
+    function openShareModal() {
+      shareModal.style.display = "block";
+    }
+    
+    function closeShareModal() {
+      shareModal.style.display = "none";
+    }
+    
+    // Copy link function
+    function copyLink() {
+      const url = "https://vipoconnect.github.io/Group-purchase-massage-chair-2";
+      navigator.clipboard.writeText(url).then(function() {
+        alert("הקישור הועתק בהצלחה!");
+      }, function() {
+        alert("לא הצלחנו להעתיק את הקישור. אנא העתק ידנית: " + url);
+      });
+    }
+    
+    // Instagram share function
+    function shareOnInstagram() {
+      const url = "https://vipoconnect.github.io/Group-purchase-massage-chair-2";
+      
+      // Instagram doesn't have a direct sharing API like WhatsApp or Facebook
+      // The best approach is to copy the link and show instructions
+      navigator.clipboard.writeText(url).then(function() {
+        alert("הקישור הועתק לשיתוף באינסטגרם. \n\nהוראות שיתוף:\n1. פתח את אפליקציית אינסטגרם\n2. צור סטורי או פוסט\n3. הדבק את הקישור באמצעות מדבקה או הוסף קישור");
+      }, function() {
+        alert("לא הצלחנו להעתיק את הקישור. אנא העתק ידנית ושתף באינסטגרם: " + url);
+      });
+    }
+    
+    // TikTok share function
+    function shareOnTikTok() {
+      const url = "https://vipoconnect.github.io/Group-purchase-massage-chair-2";
+      
+      // Similar to Instagram, TikTok doesn't have a direct web sharing API
+      navigator.clipboard.writeText(url).then(function() {
+        alert("הקישור הועתק לשיתוף בטיקטוק. \n\nהוראות שיתוף:\n1. פתח את אפליקציית טיקטוק\n2. התחל ביצירת סרטון\n3. הדבק את הקישור בתיאור הסרטון");
+      }, function() {
+        alert("לא הצלחנו להעתיק את הקישור. אנא העתק ידנית ושתף בטיקטוק: " + url);
+      });
+    }
 
     howItWorksBtn.onclick = function() {
       howItWorksModal.style.display = "block";
@@ -520,7 +646,7 @@
     
     // שיתוף בוואטסאפ
     function shareOnWhatsApp() {
-      const shareText = "הצטרפו לקנייה קבוצתית של כורסאות עיסוי במחיר מפעל! קונים חכם - בלי לשלם עכשיו, בלי סיכונים. 🔥";
+      const shareText = "קנייה קבוצתית במחיר מפעל – פתרון אמיתי ליוקר המחיה!\nבלי התחייבות, בלי לשלם – רק להצטרף ולראות כמה אפשר לחסוך👇\n🔗 לחץ כאן לפרטים";
       const shareUrl = "https://vipoconnect.github.io/Group-purchase-massage-chair-2";
       const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
       window.open(whatsappUrl, '_blank');
