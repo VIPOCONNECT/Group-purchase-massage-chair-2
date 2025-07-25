@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>קבוצת רכישה - כורסת עיסוי</title>
+  <link rel="stylesheet" href="css/1style.css" />
+  <style>
+    html, body {
+      background-color: #0f1c2e;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+      text-align: center;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .glass-wrapper {
+      background: rgba(31, 45, 68, 0.6);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 0 40px rgba(0, 195, 140, 0.1);
+      max-width: 900px;
+      width: 95%;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 1.8rem;
+      color: #00c38c;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+    
+    .hero .tagline {
+      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+    
+    .countdown-container {
+      margin-bottom: 8px;
+    }
+    
+    .timer-display {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 5px 0;
+      flex-wrap: wrap;
+    }
+    
+    .time-unit {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 195, 140, 0.3);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 12px;
+      min-width: 60px;
+      box-shadow: 0 0 15px rgba(0, 195, 140, 0.15);
+    }
+    
+    .time-unit span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00c38c;
+      text-shadow: 0 0 10px rgba(0, 195, 140, 0.5);
+      margin-bottom: 2px;
+    }
+    
+    .time-unit label {
+      font-size: 0.7rem;
+      color: #ffffff;
+      display: block;
+    }
+    
+    .timer-message {
+      margin: 5px 0;
+      padding: 5px;
+      font-size: 0.9rem;
+    }
+    
+    .feature-list {
+      text-align: right;
+      list-style-position: inside;
+      padding: 0;
+      margin: 5px 0;
+    }
+    
+    .feature-list li {
+      margin: 3px 0;
+      color: #ffffff;
+      font-size: 0.85rem;
+    }
+    
+    .price-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 4px;
+      margin: 5px 0;
+    }
+    
+    .tier {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 195, 140, 0.1);
+      font-size: 0.85rem;
+    }
+    
+    .tier.highlight {
+      background: rgba(0, 195, 140, 0.15);
+      border-color: #00c38c;
+      box-shadow: 0 0 16px rgba(0, 195, 140, 0.3);
+    }
+    
+    .tier span {
+      display: block;
+      font-size: 0.8rem;
+      color: #ffffff;
+    }
+    
+    .tier strong {
+      font-size: 1rem;
+      color: #00c38c;
+    }
+    
+    .highlight-text {
+      background: rgba(0, 195, 140, 0.15);
+      color: #ffffff;
+      padding: 5px;
+      border-radius: 8px;
+      margin: 5px 0;
+      font-size: 0.9rem;
+      border: 1px solid rgba(0, 195, 140, 0.3);
+    }
+    
+    .btn-primary {
+      margin-top: 8px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: linear-gradient(to right, #00c38c, #00a37a);
+      color: #ffffff;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 195, 140, 0.5);
+    }
+    
+    .share-row {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    
+    .share-row a {
+      color: #ffffff;
+      font-size: 0.8rem;
+      text-decoration: underline;
+    }
+    
+    .admin-link {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 195, 140, 0.3);
+      border-radius: 50px;
+      padding: 5px 10px;
+      color: #00c38c !important;
+      text-decoration: none !important;
+      margin-right: 5px;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+    
+    .admin-link:hover {
+      background: rgba(0, 195, 140, 0.15);
+      box-shadow: 0 0 15px rgba(0, 195, 140, 0.3);
+    }
+    
+    .footer {
+      font-size: 0.7rem;
+      color: #aaaaaa;
+      margin-top: 10px;
+    }
+    
+    h2 {
+      color: #ffffff;
+      font-size: 0.9rem;
+      margin: 5px 0 3px;
+      font-weight: normal;
+    }
+    
+    @media (max-width: 768px) {
+      .price-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .glass-wrapper {
+        padding: 10px;
+        width: 98%;
+      }
+      
+      .hero h1 {
+        font-size: 1.3rem;
+      }
+      
+      .feature-list li {
+        font-size: 0.75rem;
+      }
+      
+      .time-unit {
+        padding: 3px 5px;
+        min-width: 40px;
+      }
+      
+      .time-unit span {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-height: 700px) {
+      .hero h1 {
+        font-size: 1.2rem;
+      }
+      
+      .feature-list li {
+        margin: 1px 0;
+        font-size: 0.7rem;
+      }
+      
+      .glass-wrapper {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-wrapper">
+    <header class="hero">
+      <h1>💺 הדור הבא של כורסאות עיסוי – במחיר של מפעל!</h1>
+      <p class="tagline">קונים חכם עם קבוצת רכישה – בלי לשלם עכשיו, בלי סיכונים.</p>
+    </header>
+
+    <div class="countdown-container">
+      <div class="timer-display" id="timer-display">
+        <div class="time-unit">
+          <span id="days">00</span>
+          <label>ימים</label>
+        </div>
+        <div class="time-unit">
+          <span id="hours">00</span>
+          <label>שעות</label>
+        </div>
+        <div class="time-unit">
+          <span id="minutes">00</span>
+          <label>דקות</label>
+        </div>
+        <div class="time-unit">
+          <span id="seconds">00</span>
+          <label>שניות</label>
+        </div>
+      </div>
+      <div id="timer-message" class="timer-message"></div>
+    </div>
+
+    <h2>איך זה עובד?</h2>
+    <ul class="feature-list">
+      <li>נרשמים בלי לשלם – הצטרפות חינם וללא התחייבות.</li>
+      <li>ממתינים 45 יום – אנחנו בודקים כמה משתתפים יש.</li>
+      <li>מקבלים הצעה סופית – אתם בוחרים אם לרכוש או לא. פשוט!</li>
+    </ul>
+
+    <div class="price-grid">
+      <div class="tier"><span>50 משתתפים</span><strong>₪3,500</strong></div>
+      <div class="tier highlight"><span>100 משתתפים</span><strong>₪3,200</strong></div>
+      <div class="tier"><span>150 משתתפים</span><strong>₪3,000</strong></div>
+      <div class="tier"><span>200 משתתפים</span><strong>₪2,800</strong></div>
+    </div>
+
+    <div class="highlight-text">
+      🟢 <strong>ככל שיש יותר משתתפים – כולם משלמים פחות!</strong>
+    </div>
+
+    <h2>למה להצטרף עכשיו?</h2>
+    <ul class="feature-list">
+      <li>✅ אין תשלום מראש</li>
+      <li>✅ ייבוא ישיר מהמפעל – ללא פערי תיווך</li>
+      <li>✅ הנחות לפי כמות משתתפים</li>
+      <li>✅ לא אהבתם? לא קונים. פשוט.</li>
+    </ul>
+
+    <a href="join-form-confirmation.html">
+      <button class="btn-primary">אני רוצה להצטרף</button>
+    </a>
+    
+    <div class="share-row">
+      <a href="#">שיתוף בוואטסאפ</a>
+      <a href="#">שיתוף בפייסבוק</a>
+      <a href="admin.html" class="admin-link">⚙️ ניהול קמפיין</a>
+    </div>
+    
+    <div class="footer">
+      🛠️ פרויקט בניהול VIPO - מתווכים בין עסקים למפעלים בסין
+    </div>
+  </div>
+  <script src="js/timer.js"></script>
+  <!-- הסרנו את קוד JavaScript לכפתור מאחר וכעת הוא מקשר לדף טופס -->
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תיעוד מערכת טיימר קמפיין - למפתחים</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .docs-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            direction: ltr;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .api-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .api-table th, .api-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: right;
+        }
+        
+        .api-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="docs-container">
+        <h1>📚 תיעוד מערכת טיימר קמפיין - למפתחים</h1>
+        
+        <div class="section">
+            <h2>🎯 סקירה כללית</h2>
+            <p>מערכת טיימר קמפיין היא מערכת פשוטה ויעילה להצגת טיימר יורד לסיום קמפיין, עם ממשל ניהול נוח למנהלים.</p>
+            <p>המערכת בנויה בטכנולוגיות בסיסיות (HTML, CSS, JavaScript) ללא תלות בספריות חיצוניות.</p>
+        </div>
+
+        <div class="section">
+            <h2>📁 מבנה הקבצים</h2>
+            <ul>
+                <li><strong>index.html</strong> - דף הצגת הטיימר ללקוחות</li>
+                <li><strong>admin.html</strong> - דף ניהול הקמפיין למנהלים</li>
+                <li><strong>timer.js</strong> - לוגיקת הטיימר והצגה</li>
+                <li><strong>admin.js</strong> - ניהול תאריכים וכותרות</li>
+                <li><strong>style.css</strong> - עיצוב אחיד לכל הדפים</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>⚙️ הגדרות אחסון</h2>
+            <p>המערכת משתמשת ב-localStorage לשמירת הנתונים:</p>
+            <div class="code-block">
+campaignEndDate - תאריך סיום הקמפיין בפורמט ISO String
+campaignTitle - כותרת הקמפיין (ברירת מחדל: "טיימר קמפיין")
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔧 API פנימי - timer.js</h2>
+            <p>ה-API מחשף דרך אובייקט <code>window.TimerAPI</code>:</p>
+            
+            <table class="api-table">
+                <thead>
+                    <tr>
+                        <th>מתודה</th>
+                        <th>תיאור</th>
+                        <th>החזרה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>getCampaignEndDate()</td>
+                        <td>מחזיר את תאריך הסיום מה-localStorage</td>
+                        <td>Date object או null</td>
+                    </tr>
+                    <tr>
+                        <td>getCampaignTitle()</td>
+                        <td>מחזיר את כותרת הקמפיין</td>
+                        <td>מחרוזת</td>
+                    </tr>
+                    <tr>
+                        <td>calculateTimeRemaining(endDate)</td>
+                        <td>מחשב את הזמן שנותר עד תאריך הסיום</td>
+                        <td>אובייקט עם ימים, שעות, דקות, שניות</td>
+                    </tr>
+                    <tr>
+                        <td>updateDisplay(time)</td>
+                        <td>מעדכן את התצוגה עם הזמן החדש</td>
+                        <td>void</td>
+                    </tr>
+                    <tr>
+                        <td>updateTimer()</td>
+                        <td>מעדכן את כל הטיימר (קריאה ידנית)</td>
+                        <td>void</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🎨 התאמה אישית</h2>
+            <p>ניתן להתאים את המערכת בקלות:</p>
+            
+            <h3>שינוי צבעים</h3>
+            <p>ערוך את הקבועים ב-<code>style.css</code>:</p>
+            <div class="code-block">
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+    --background-color: #f7f7f7;
+}
+            </div>
+
+            <h3>הוספת פונקציות חדשות</h3>
+            <div class="highlight">
+                <strong>טיפ:</strong> ניתן להרחיב את ה-API בקלות על ידי הוספת מתודות חדשות לאובייקט window.TimerAPI.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔒 אבטחה והרחבות</h2>
+            <ul>
+                <li><strong>אבטחה בסיסית:</strong> אימות תאריך תקין ועתידי</li>
+                <li><strong>הרחבה אפשרית:</strong> מעבר לשמירה בשרת במקום localStorage</li>
+                <li><strong>הרחבה אפשרית:</strong> ניהול מרובה קמפיינים</li>
+                <li><strong>הרחבה אפשרית:</strong> אימות משתמשים בדף הניהול</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🐛 דיבוג ותחזוקה</h2>
+            <p>לצורך דיבוג, פתח את הקונסול בדפדפן (F12) וחפש:</p>
+            <ul>
+                <li>שגיאות ב-localStorage</li>
+                <li>בעיות בפורמט התאריך</li>
+                <li>בעיות בחישוב הזמן</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📱 תאימות</h2>
+            <p>המערכת תואמת:</p>
+            <ul>
+                <li>✅ כל הדפדפנים המודרניים (Chrome, Firefox, Safari, Edge)</li>
+                <li>✅ מכשירי מובייל (iOS, Android)</li>
+                <li>✅ טאבלטים</li>
+                <li>✅ דסקטופ</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🚀 התקנה מהירה</h2>
+            <ol>
+                <li>העלה את כל הקבצים לשרת</li>
+                <li>פתח את <code>admin.html</code> כדי להגדיר תאריך סיום</li>
+                <li>שתף את <code>index.html</code> עם הלקוחות</li>
+            </ol>
+        </div>
+
+        <div class="highlight">
+            <strong>שימו לב:</strong> המערכת משתמשת ב-localStorage של הדפדפן. הנתונים נשמרים רק בדפדפן הספציפי שבו הוגדרו.
+        </div>
+    </div>
+</body>
+</html>

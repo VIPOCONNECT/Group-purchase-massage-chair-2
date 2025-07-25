@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ניהול הצטרפויות</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00ccff;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: right;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #2a2a2a;
+      color: #00ff99;
+    }
+
+    tr:hover {
+      background-color: #2d2d2d;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>רשימת נרשמים למערכת</h2>
+  <table id="registrationsTable">
+    <thead>
+      <tr>
+        <th>שם מלא</th>
+        <th>כתובת</th>
+        <th>טלפון</th>
+        <th>אימייל</th>
+        <th>שיטת משלוח</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- נתונים יוזנו כאן -->
+    </tbody>
+  </table>
+
+  <script>
+    const tableBody = document.querySelector("#registrationsTable tbody");
+    const registrations = JSON.parse(localStorage.getItem("registrations") || "[]");
+
+    if (registrations.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #999;">אין עדיין נרשמים</td></tr>';
+    } else {
+      registrations.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.firstName} ${item.lastName}</td>
+          <td>${item.address}</td>
+          <td>${item.phone}</td>
+          <td>${item.email}</td>
+          <td>${item.delivery}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  </script>
+
+</body>
+</html>

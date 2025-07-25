@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>תכנית עבודה מלאה - מערכת טיימר קמפיין</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 40px;
+      line-height: 1.9;
+      color: #222;
+      direction: rtl;
+    }
+    h1, h2 {
+      color: #00796b;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    ul {
+      margin-right: 20px;
+    }
+    code {
+      background: #e0e0e0;
+      padding: 2px 6px;
+      border-radius: 5px;
+      direction: ltr;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📋 תכנית עבודה מפורטת - מערכת טיימר קמפיין קבוצתי</h1>
+
+  <section>
+    <h2>🧱 שלב ראשון: הגדרת מבנה תיקייה</h2>
+    <p>כל קובץ נבנה בנפרד לפי תפקיד, כך שיהיה קל להרחיב, לעדכן ולתחזק:</p>
+    <ul>
+      <li><strong>index.html</strong> – מציג את הטיימר ללקוחות.</li>
+      <li><strong>admin.html</strong> – דף ניהול קמפיין (כניסת מנהל).</li>
+      <li><strong>timer.js</strong> – לוגיקת חישוב הזמן והצגה לציבור.</li>
+      <li><strong>admin.js</strong> – קוד שמירת תאריך יעד מתוך דף ניהול.</li>
+      <li><strong>style.css</strong> – קובץ עיצוב רספונסיבי אחיד.</li>
+      <li><strong>readme-timer-docs.html</strong> – תיעוד קוד למפתחים.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>⚙️ שלב שני: יצירת קובצי הקוד</h2>
+    <ul>
+      <li><strong>timer.js</strong> – כולל:</li>
+      <ul>
+        <li>שליפת תאריך מה־localStorage.</li>
+        <li>חישוב הזמן שנותר.</li>
+        <li>עדכון כל שנייה עם <code>setInterval()</code>.</li>
+        <li>הצגת טקסט מותאם (הסתיים / טרם הוגדר).</li>
+      </ul>
+
+      <li><strong>admin.js</strong> – כולל:</li>
+      <ul>
+        <li>קליטת תאריך מהמשתמש.</li>
+        <li>בדיקת תקינות תאריך.</li>
+        <li>שמירה ב־localStorage בתור ISO String.</li>
+        <li>הודעת אישור למנהל.</li>
+      </ul>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🎨 שלב שלישי: עיצוב</h2>
+    <ul>
+      <li><strong>style.css</strong> כולל:</li>
+      <ul>
+        <li>תצוגה רספונסיבית (מובייל ודסקטופ).</li>
+        <li>עיצוב אחיד לקופסאות ניהול וטיימר.</li>
+        <li>עיצוב כפתורים, שדות טופס, צבעים וטיפוגרפיה.</li>
+      </ul>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🧪 שלב רביעי: בדיקות ידניות</h2>
+    <ul>
+      <li>בדיקת תאריך תקין מול שעון המכשיר.</li>
+      <li>בדיקת מעבר בין דפים (index ← admin).</li>
+      <li>בדיקת רענון עמוד – שהנתונים נשמרים.</li>
+      <li>בדיקת תמיכה באנדרואיד, iOS ודפדפנים.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📦 שלב חמישי: הכנה להטמעה באתר</h2>
+    <ul>
+      <li>הוספת קובץ index.html לקמפיין המוצר.</li>
+      <li>הוספת admin.html לתיקייה נפרדת / מאובטחת.</li>
+      <li>העלאת הקבצים לשרת או חיבור למערכת קיימת.</li>
+      <li>הטמעה עם iframe אם נדרש בדף מוצר.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📁 שלב שישי: מוכנות להרחבות</h2>
+    <ul>
+      <li>מעבר לשמירה מבוססת API/שרת.</li>
+      <li>ניהול טיימרים מרובים לפי מזהה קמפיין.</li>
+      <li>הוספת אימות משתמשים ב-admin.</li>
+      <li>שימוש במשתנים גלובליים בקובץ config.js (בעתיד).</li>
+    </ul>
+  </section>
+
+</body>
+</html>
