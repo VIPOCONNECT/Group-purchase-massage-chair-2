@@ -47,6 +47,18 @@
       margin-top: 0;
       margin-bottom: 15px;
       color: #ffffff;
+      cursor: pointer;
+      background-color: rgba(0, 195, 140, 0.2);
+      padding: 8px 15px;
+      border-radius: 15px;
+      display: inline-block;
+      transition: background-color 0.3s, transform 0.3s;
+      border: 1px solid rgba(0, 195, 140, 0.4);
+    }
+    
+    .hero .tagline:hover {
+      background-color: rgba(0, 195, 140, 0.4);
+      transform: scale(1.02);
     }
     
     .countdown-container {
@@ -227,33 +239,66 @@
       box-shadow: 0 0 15px rgba(0, 195, 140, 0.3);
     }
     
-    /* סגנון למודאל */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-    }
-    
-    .modal-content {
-      position: relative;
-      background: rgba(31, 45, 68, 0.95);
-      border: 2px solid rgba(0, 195, 140, 0.5);
-      border-radius: 20px;
-      margin: 15% auto;
-      padding: 20px;
-      width: 80%;
-      max-width: 500px;
-      box-shadow: 0 0 30px rgba(0, 195, 140, 0.3);
-      animation: modalopen 0.4s;
-    }
-    
-    @keyframes modalopen {
+    /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+  }
+
+  .modal-content {
+    background-color: #192738;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+    position: relative;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .close:hover {
+    color: #00c38c;
+  }
+  
+  .slogan-modal {
+    z-index: 1001; /* Make sure it's above the other modal */
+  }
+  
+  .slogan-modal h2 {
+    color: #00c38c;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .slogan-modal ul {
+    text-align: right;
+    direction: rtl;
+    margin-right: 15px;
+  }
+  
+  .slogan-modal p {
+    margin: 15px 0;
+  }  @keyframes modalopen {
       from {opacity: 0; transform: scale(0.8);}
       to {opacity: 1; transform: scale(1);}
     }
@@ -329,7 +374,7 @@
 <body>
   <div class="glass-wrapper">
     <header class="hero">
-      <h1>💺 הדור הבא של כורסאות עיסוי – במחיר של מפעל!</h1>
+      <p class="tagline" onclick="toggleSloganModal()">🚨 יוקר המחיה לא עוצר – גם אנחנו לא! לחצו כאן להבין איך חוסכים בגדול 💡</p>
       <p class="tagline">קונים חכם עם קבוצת רכישה – בלי לשלם עכשיו, בלי סיכונים.</p>
     </header>
 
@@ -360,15 +405,48 @@
     <!-- מודאל "איך זה עובד" -->
     <div id="howItWorksModal" class="modal">
       <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h3 class="modal-title">איך קבוצת הרכישה עובדת?</h3>
-        <ul class="feature-list">
-          <li>נרשמים בלי לשלם – הצטרפות חינם וללא התחייבות.</li>
-          <li>ממתינים 45 יום – אנחנו בודקים כמה משתתפים יש.</li>
-          <li>מקבלים הצעה סופית – אתם בוחרים אם לרכוש או לא. פשוט!</li>
-        </ul>
+        <span class="close" id="closeModal">&times;</span>
+        <h2>איך זה עובד?</h2>
+        <p>1. <strong>נרשמים בלי לשלם</strong> – הצטרפות חינם וללא התחייבות</p>
+        <p>2. <strong>ממתינים 45 יום</strong> – אנחנו בודקים כמה משתתפים יש</p>
+        <p>3. <strong>מקבלים הצעה סופית</strong> – אתם בוחרים אם לרכוש או לא</p>
       </div>
     </div>
+  
+  <!-- Slogan Modal -->
+  <div id="sloganModal" class="modal slogan-modal">
+    <div class="modal-content">
+      <span class="close" id="closeSloganModal">&times;</span>
+      <h2>למה בכלל קנייה קבוצתית?</h2>
+      <p>
+        יוקר המחיה בארץ שובר שיאים. אנחנו משלמים יותר – ומקבלים פחות. מוצרים שמתומחרים פי 2 ו-3 ממחירם האמיתי, רק כי אנחנו קונים לבד, בארץ, דרך מתווכים.
+      </p>
+      <p>
+        כאן אנחנו משנים את המשחק – בקנייה קבוצתית כולנו מתאגדים יחד, ומבצעים רכישה ישירה מהמפעל – ללא חנויות, סוכנים או פערי תיווך. ככל שיותר משתתפים מצטרפים – המחיר יורד לכולם!
+      </p>
+
+      <h2>מי אנחנו?</h2>
+      <p>
+        אנחנו צוות עם ניסיון של מעל 15 שנה בייבוא וניהול עסקאות מול מפעלי ענק בסין. עד היום עבדנו עם עסקים – אבל עכשיו החלטנו להביא את הכוח הזה גם לציבור. כל משפחה בישראל צריכה לקבל מוצר איכותי – בלי להישחט.
+      </p>
+
+      <h2>איך זה עובד בפועל?</h2>
+      <ul>
+        <li>מצטרפים – בלי לשלם, בלי התחייבות.</li>
+        <li>מחכים לסיום הקמפיין (45 יום).</li>
+        <li>בודקים כמה הצטרפו – ולפי זה המחיר הסופי.</li>
+        <li>רק אם תרצו – משלמים ומקבלים את המוצר עד הבית.</li>
+      </ul>
+
+      <p>
+        ✅ אין סיכון. ✅ אין טריקים. ✅ רק חיסכון אמיתי – יחד.
+      </p>
+
+      <p style="font-weight:bold; color:#00ff99;">
+        אנחנו כאן כדי להחזיר את השליטה לידיים שלנו. הצטרפו אלינו – ותנו לכוח של הקבוצה לעבוד בשבילכם.
+      </p>
+    </div>
+  </div>
 
     <div class="price-grid">
       <div class="tier"><span>50 משתתפים</span><strong>₪3,500</strong></div>
@@ -405,29 +483,40 @@
   </div>
   <script src="js/timer.js"></script>
   <script>
-    // פונקציונליות לחלון המודאלי "איך זה עובד"
-    document.addEventListener('DOMContentLoaded', function() {
-      const modal = document.getElementById('howItWorksModal');
-      const btn = document.getElementById('howItWorksBtn');
-      const closeBtn = document.getElementsByClassName('close-btn')[0];
-      
-      // פותח את המודאל בלחיצה על הכפתור
-      btn.addEventListener('click', function() {
-        modal.style.display = 'block';
-      });
-      
-      // סוגר את המודאל בלחיצה על X
-      closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-      });
-      
-      // סוגר את המודאל בלחיצה מחוץ לחלון
-      window.addEventListener('click', function(event) {
-        if (event.target == modal) {
-          modal.style.display = 'none';
-        }
-      });
-    });
+    // How It Works Modal functionality
+    const howItWorksModal = document.getElementById("howItWorksModal");
+    const howItWorksBtn = document.getElementById("howItWorksBtn");
+    const closeHowItWorksModal = document.getElementById("closeModal");
+
+    howItWorksBtn.onclick = function() {
+      howItWorksModal.style.display = "block";
+    }
+
+    closeHowItWorksModal.onclick = function() {
+      howItWorksModal.style.display = "none";
+    }
+    
+    // Slogan Modal functionality
+    const sloganModal = document.getElementById("sloganModal");
+    const closeSloganModal = document.getElementById("closeSloganModal");
+    
+    function toggleSloganModal() {
+      sloganModal.style.display = "block";
+    }
+    
+    closeSloganModal.onclick = function() {
+      sloganModal.style.display = "none";
+    }
+
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+      if (event.target == howItWorksModal) {
+        howItWorksModal.style.display = "none";
+      }
+      if (event.target == sloganModal) {
+        sloganModal.style.display = "none";
+      }
+    }
   </script>
 </body>
 </html>

@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>קבוצת רכישה - כורסת עיסוי</title>
+  <style>
+    body {
+      background-color: #0f1c2e;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin: 30px 20px 10px;
+      color: #00c38c;
+      cursor: pointer;
+    }
+    section {
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .highlight {
+      background-color: #192738;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-size: 1.1em;
+      display: none;
+      text-align: right;
+    }
+    h2 {
+      color: #00c38c;
+    }
+    ul {
+      text-align: right;
+      direction: rtl;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h1 onclick="toggleExplanation()">
+      🚨 יוקר המחיה לא עוצר – גם אנחנו לא! לחצו כאן להבין איך חוסכים בגדול 💡
+    </h1>
+
+    <div id="explanation" class="highlight">
+      <h2>למה בכלל קנייה קבוצתית?</h2>
+      <p>
+        יוקר המחיה בארץ שובר שיאים. אנחנו משלמים יותר – ומקבלים פחות. מוצרים שמתומחרים פי 2 ו-3 ממחירם האמיתי, רק כי אנחנו קונים לבד, בארץ, דרך מתווכים.
+      </p>
+      <p>
+        כאן אנחנו משנים את המשחק – בקנייה קבוצתית כולנו מתאגדים יחד, ומבצעים רכישה ישירה מהמפעל – ללא חנויות, סוכנים או פערי תיווך. ככל שיותר משתתפים מצטרפים – המחיר יורד לכולם!
+      </p>
+
+      <h2>מי אנחנו?</h2>
+      <p>
+        אנחנו צוות עם ניסיון של מעל 15 שנה בייבוא וניהול עסקאות מול מפעלי ענק בסין. עד היום עבדנו עם עסקים – אבל עכשיו החלטנו להביא את הכוח הזה גם לציבור. כל משפחה בישראל צריכה לקבל מוצר איכותי – בלי להישחט.
+      </p>
+
+      <h2>איך זה עובד בפועל?</h2>
+      <ul>
+        <li>מצטרפים – בלי לשלם, בלי התחייבות.</li>
+        <li>מחכים לסיום הקמפיין (45 יום).</li>
+        <li>בודקים כמה הצטרפו – ולפי זה המחיר הסופי.</li>
+        <li>רק אם תרצו – משלמים ומקבלים את המוצר עד הבית.</li>
+      </ul>
+
+      <p>
+        ✅ אין סיכון. ✅ אין טריקים. ✅ רק חיסכון אמיתי – יחד.
+      </p>
+
+      <p style="font-weight:bold; color:#00ff99;">
+        אנחנו כאן כדי להחזיר את השליטה לידיים שלנו. הצטרפו אלינו – ותנו לכוח של הקבוצה לעבוד בשבילכם.
+      </p>
+    </div>
+
+    <footer>
+      <p>🛠️ פרויקט בניהול VIPO - מתווכים בין עסקים למפעלים בסין</p>
+    </footer>
+  </section>
+
+  <script>
+    function toggleExplanation() {
+      const el = document.getElementById("explanation");
+      el.style.display = el.style.display === "none" ? "block" : "none";
+    }
+  </script>
+
+</body>
+</html>
