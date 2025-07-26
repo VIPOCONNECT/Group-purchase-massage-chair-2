@@ -497,6 +497,45 @@
     direction: rtl;
     text-align: right;
   }
+  
+  /* עיצוב מותאם למובייל עבור החלון הקופץ */
+  @media screen and (max-width: 768px) {
+    .modal-content {
+      margin: 5% auto;
+      padding: 15px;
+      width: 90%;
+      max-width: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      font-size: 0.85rem;
+    }
+    
+    .modal-content h2 {
+      font-size: 1rem;
+      margin-top: 25px;
+    }
+    
+    .modal-content p {
+      margin: 10px 0;
+      font-size: 0.85rem;
+    }
+    
+    .close {
+      color: #00c38c !important;
+      top: 5px;
+      left: 10px;
+      font-size: 32px;
+      z-index: 9999;
+      background-color: rgba(25, 39, 56, 0.9);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0,195,140,0.5);
+    }
+  }
 
   .close {
     color: #aaa;
