@@ -838,53 +838,53 @@
 <body>
   <!-- התפריט העליון הוסר לפי בקשת המשתמש -->
     
-  <div class="glass-wrapper" style="margin-top: 15px;">
+  <div class="glass-wrapper">
     <!-- האפלה למצב מובייל -->
     <div class="overlay"></div>
     
-    <header class="hero" style="margin-top: 30px;">
-      <p class="tagline" onclick="toggleSloganModal()">🔊 יוקר המחיה לא עוצר – גם אנחנו לא! לחצו כאן להבין איך חוסכים בגדול 💡</p>
-      <p class="tagline">מצטרפים עכשיו לקבוצת רכישה במחיר מפעל לפני שהזמן נגמר</p>
+    <header class="hero" style="margin-top: 10px;">
+      <p class="tagline" onclick="toggleSloganModal()" style="font-size: 0.9rem; margin: 5px 0;">🔊 יוקר המחיה לא עוצר – גם אנחנו לא! לחצו כאן להבין איך חוסכים בגדול 💡</p>
+      <p class="tagline" style="font-size: 0.9rem; margin: 5px 0;">מצטרפים עכשיו לקבוצת רכישה במחיר מפעל לפני שהזמן נגמר</p>
     </header>
 
     <div class="countdown-container">
       <div class="timer-display" id="timer-display">
         <div class="time-unit">
           <span id="days">00</span>
-          <label>ימים</label>
+          <label style="font-size: 0.8rem;">ימים</label>
         </div>
         <div class="time-unit">
           <span id="hours">00</span>
-          <label>שעות</label>
+          <label style="font-size: 0.8rem;">שעות</label>
         </div>
         <div class="time-unit">
           <span id="minutes">00</span>
-          <label>דקות</label>
+          <label style="font-size: 0.8rem;">דקות</label>
         </div>
         <div class="time-unit">
           <span id="seconds">00</span>
-          <label>שניות</label>
+          <label style="font-size: 0.8rem;">שניות</label>
         </div>
       </div>
       <div id="timer-message" class="timer-message"></div>
     </div>
 
-    <button id="howItWorksBtn" class="btn-how-it-works">איך זה באמת עובד – ולמה כולם מצטרפים? 🔎</button>
-    <p class="example-text" style="text-align: center; color: #ffcc00; margin-top: 5px; font-size: 0.9rem; font-weight: bold;">דוגמה: כורסת עיסוי במקום ב-8000 ₪</p>
+    <button id="howItWorksBtn" class="btn-how-it-works" style="font-size: 0.85rem; padding: 8px; margin: 5px 0;">איך זה באמת עובד – ולמה כולם מצטרפים? 🔎</button>
+    <p class="example-text" style="text-align: center; color: #ffcc00; margin: 3px 0; font-size: 0.85rem; font-weight: bold;">דוגמה: כורסת עיסוי במקום ב-8000 ₪</p>
     
     <!-- מודאל "איך זה עובד" -->
     <div id="howItWorksModal" class="modal">
       <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
-        <h2>איך זה באמת עובד – ולמה כולם מצטרפים?</h2>
-        <p>אנחנו מעל 15 שנה עובדים מול מפעלים מהגדולים בעולם. עד היום – זה היה רק לעסקים.</p>
-        <p>אבל עכשיו? החלטנו לשנות את חוקי המשחק.</p>
-        <p>🎥 כל שבוע אנחנו מוצר חדש – בדיוק ממ"ל אנחנו מכירים באופן אישי.</p>
-        <p>💬 אנחנו דואגים לחוזים, בודקים תקנים (משרד הבריאות, FDA) ומנהלים את כל העסקה – בשבילכם.</p>
-        <p>🚢 אנחנו מייבאים את כל המכולה לישראל ומובילים עד הבית – דרך חברת שילוח מקצועית.</p>
-        <p>✅ בלי פערי תיווך. בלי סוכנים. בלי לשלם מראש.</p>
-        <p>✅ רק אם מצטרפים מספיק – כולם משלמים פחות. פשוט.</p>
-        <p>אנחנו לא רק מוכרים – אנחנו מאחדים.</p>
+        <h2 style="font-size: 1.2rem;">איך זה באמת עובד – ולמה כולם מצטרפים?</h2>
+        <p style="font-size: 1rem;">אנחנו מעל 15 שנה עובדים מול מפעלים מהגדולים בעולם. עד היום – זה היה רק לעסקים.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">אבל עכשיו? החלטנו לשנות את חוקי המשחק.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">🎥 כל שבוע אנחנו מוצר חדש – בדיוק ממ"ל אנחנו מכירים באופן אישי.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">💬 אנחנו דואגים לחוזים, בודקים תקנים (משרד הבריאות, FDA) ומנהלים את כל העסקה – בשבילכם.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">🚀 אנחנו מייבאים את כל המכולה לישראל ומובילים עד הבית – דרך חברת שילוח מקצועית.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">✅ בלי פערי תיווך. בלי סוכנים. בלי לשלם מראש.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">✅ רק אם מצטרפים מספיק – כולם משלמים פחות. פשוט.</p>
+        <p style="font-size: 1rem; margin: 5px 0;">✅ תשלום רק בסוף – ורק אם הכל בסדר.</p>
         <p>אנחנו כאן כדי לעזור לכולנו לחסוך ביוקר המחיה.</p>
         <p>💚 תנו לכוח של הקבוצה לעבוד גם בשבילכם.</p>
         <p>הצטרפו עכשיו – בלי סיכון, ובלי להתחייב.</p>

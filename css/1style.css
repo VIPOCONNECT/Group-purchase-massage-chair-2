@@ -1,28 +1,44 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-body {
+html, body {
   margin: 0;
-  font-family: 'Orbitron', sans-serif;
+  padding: 0;
+  font-family: 'Heebo', sans-serif;
+  background: url('../images/dark-blue-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
   direction: rtl;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: #ffffff;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 10px;
 }
 
 .glass-wrapper {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 0 40px rgba(0,255,255,0.1);
-  max-width: 720px;
-  width: 100%;
+  background: rgba(0, 20, 40, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   text-align: center;
+  max-width: 800px;
+  margin: 10px auto;
+  height: calc(100% - 20px);
+  overflow: hidden;
+  max-height: 95vh;
 }
 
 .hero h1 {
@@ -32,8 +48,8 @@ body {
 }
 
 .hero .tagline {
-  font-size: 18px;
-  margin-top: 10px;
+  font-size: 0.9rem;
+  margin: 5px 0;
   color: #c2f0ff;
 }
 
@@ -47,7 +63,7 @@ body {
 
 /* עיצוב טיימר מתקדם */
 .countdown-container {
-  margin-bottom: 20px;
+  margin: 10px 0;
 }
 
 .timer-display {
@@ -62,19 +78,19 @@ body {
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(0, 229, 255, 0.3);
   color: white;
-  padding: 12px 15px;
-  border-radius: 12px;
-  min-width: 80px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  min-width: 60px;
   box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
 }
 
 .time-unit span {
   display: block;
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: bold;
   color: #00e5ff;
   text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .time-unit label {
@@ -123,16 +139,20 @@ body {
 }
 
 .modal-content {
-  background: rgba(15, 32, 39, 0.95);
+  background-color: rgba(20, 30, 50, 0.95);
+  backdrop-filter: blur(10px);
   margin: 10% auto;
-  padding: 20px;
-  border: 1px solid rgba(0, 195, 140, 0.5);
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0, 195, 140, 0.3);
-  width: 70%;
+  padding: 15px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 15px;
+  width: 85%;
   max-width: 600px;
-  position: relative;
-  animation: modalopen 0.4s;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  line-height: 1.3;
+  animation: modalFadeIn 0.3s;
 }
 
 .price-grid {
@@ -140,22 +160,26 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
+
 .tier {
   background: rgba(0, 0, 0, 0.4);
   padding: 14px;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.1);
 }
+
 .tier.highlight {
   background: rgba(0, 229, 255, 0.15);
   border-color: #00e5ff;
   box-shadow: 0 0 16px #00e5ff55;
 }
+
 .tier span {
   display: block;
   font-size: 14px;
   color: #ccf8ff;
 }
+
 .tier strong {
   font-size: 20px;
   color: #ffffff;
@@ -212,6 +236,7 @@ body {
   justify-content: center;
   gap: 14px;
 }
+
 .share-row a {
   color: #aaf3ff;
   font-size: 14px;
@@ -261,13 +286,13 @@ body {
 
 /* עיצוב הפוטר */
 .footer {
-  margin-top: 30px;
-  padding: 15px 10px;
-  font-size: 14px;
+  margin-top: 15px;
+  padding: 10px 5px;
+  font-size: 12px;
   color: #aaf3ff;
   border-top: 1px solid rgba(0, 229, 255, 0.2);
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 .footer a {
@@ -293,91 +318,54 @@ body {
   opacity: 0.8;
 }
 
-/* עיצוב כפתור איך זה עובד */
-.btn-how-it-works {
-  background: linear-gradient(135deg, #2d4a72, #1a3251);
-  color: #ffffff;
-  border: none;
-  border-radius: 50px;
-  padding: 12px 22px;
-  margin: 10px 0;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.3);
-  font-weight: 500;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.btn-how-it-works:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: all 0.6s;
-}
-
-.btn-how-it-works:hover {
-  background: linear-gradient(135deg, #375c8c, #244063);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-}
-
-.btn-how-it-works:hover:before {
-  left: 100%;
-}
-
-.btn-how-it-works:active {
-  transform: translateY(1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* עיצוב כפתורי סגירה */
-.close {
-  color: #00c38c;
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  font-size: 32px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  z-index: 100;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 10px rgba(0, 195, 140, 0.5);
-}
-
-.close:hover {
-  color: #00e5ff;
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
-}
-
 /* עדכונים למובייל */
 @media (max-width: 768px) {
+  .timer-display {
+    flex-wrap: wrap;
+  }
+  
+  .time-unit {
+    margin: 3px;
+    min-width: 50px;
+    padding: 5px 8px;
+  }
+  
+  .time-unit span {
+    font-size: 1.5em;
+    margin-bottom: 2px;
+  }
+  
+  .time-unit label {
+    font-size: 0.75em;
+  }
+  
+  .hero h1 {
+    font-size: 22px;
+    margin-bottom: 3px;
+  }
+  
+  .hero .tagline {
+    font-size: 0.8rem;
+    margin: 3px 0;
+  }
+  
+  .btn-how-it-works {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
   .footer {
-    font-size: 12px;
-    padding: 12px 5px;
-    margin-top: 20px;
+    margin-top: 10px;
+    padding: 8px 3px;
+    font-size: 10px;
+    line-height: 1.2;
   }
   
-  .footer-links,
-  .privacy-policy-link {
-    margin-top: 6px;
-    font-size: 11px;
+  .glass-wrapper {
+    padding: 15px 10px;
+    margin: 5px auto;
+    height: calc(100% - 10px);
   }
-  
   /* תיקון למודאלים במובייל */
   .modal-content {
     margin: 10% auto;
