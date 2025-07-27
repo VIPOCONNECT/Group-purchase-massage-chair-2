@@ -109,6 +109,32 @@ body {
   border: 1px solid rgba(255, 87, 34, 0.3);
 }
 
+/* עיצוב בסיסי למודאלים */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background: rgba(15, 32, 39, 0.95);
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid rgba(0, 195, 140, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 195, 140, 0.3);
+  width: 70%;
+  max-width: 600px;
+  position: relative;
+  animation: modalopen 0.4s;
+}
+
 .price-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -135,21 +161,49 @@ body {
   color: #ffffff;
 }
 
+/* כפתורים משודרגים */
 .btn-primary {
   margin-top: 30px;
-  padding: 14px 30px;
+  padding: 16px 36px;
   font-size: 18px;
-  background: linear-gradient(to right, #00e5ff, #00c6ff);
+  background: linear-gradient(135deg, #00e5ff, #00a0b3);
   color: #001f2f;
   border: none;
   border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 229, 255, 0.3), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
+
+.btn-primary:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s;
+}
+
 .btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00f7ff88;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 229, 255, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #00f7ff, #00b8cc);
+}
+
+.btn-primary:hover:before {
+  left: 100%;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(0, 229, 255, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .share-row {
@@ -169,14 +223,184 @@ body {
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(0, 229, 255, 0.3);
   border-radius: 50px;
-  padding: 5px 12px;
+  padding: 8px 16px;
   color: #00e5ff !important;
   text-decoration: none !important;
-  margin-right: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 229, 255, 0.15);
+}
+
+.admin-link:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.15), transparent);
+  transition: all 0.5s;
 }
 
 .admin-link:hover {
   background: rgba(0, 229, 255, 0.15);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.admin-link:hover:before {
+  left: 100%;
+}
+
+.admin-link:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 229, 255, 0.3);
+}
+
+/* עיצוב הפוטר */
+.footer {
+  margin-top: 30px;
+  padding: 15px 10px;
+  font-size: 14px;
+  color: #aaf3ff;
+  border-top: 1px solid rgba(0, 229, 255, 0.2);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer a {
+  color: #00e5ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+.footer-links {
+  display: block;
+  margin-top: 8px;
+}
+
+.privacy-policy-link {
+  margin-top: 10px;
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* עיצוב כפתור איך זה עובד */
+.btn-how-it-works {
+  background: linear-gradient(135deg, #2d4a72, #1a3251);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 22px;
+  margin: 10px 0;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn-how-it-works:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: all 0.6s;
+}
+
+.btn-how-it-works:hover {
+  background: linear-gradient(135deg, #375c8c, #244063);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-how-it-works:hover:before {
+  left: 100%;
+}
+
+.btn-how-it-works:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* עיצוב כפתורי סגירה */
+.close {
+  color: #00c38c;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 195, 140, 0.5);
+}
+
+.close:hover {
+  color: #00e5ff;
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.7);
+}
+
+/* עדכונים למובייל */
+@media (max-width: 768px) {
+  .footer {
+    font-size: 12px;
+    padding: 12px 5px;
+    margin-top: 20px;
+  }
+  
+  .footer-links,
+  .privacy-policy-link {
+    margin-top: 6px;
+    font-size: 11px;
+  }
+  
+  /* תיקון למודאלים במובייל */
+  .modal-content {
+    margin: 10% auto;
+    max-height: 80vh;
+    width: 85%;
+    position: relative;
+  }
+  
+  .close {
+    top: 5px;
+    left: 10px;
+    color: #00c38c !important;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 195, 140, 0.7);
+  }
 }

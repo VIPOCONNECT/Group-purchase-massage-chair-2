@@ -1,0 +1,467 @@
+<!-- Modular Modal Component
+     כל הקוד הקשור לחלונות המודאליים (HTML, CSS, JavaScript) 
+     בקובץ אחד עצמאי לשימוש חוזר -->
+
+<style>
+  /* Modal Styles - עיצוב החלונות המודאליים */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .modal.show {
+    opacity: 1;
+  }
+
+  .modal-content {
+    background: linear-gradient(145deg, #192738, #1e2e42);
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    color: white;
+    position: relative;
+    direction: rtl;
+    text-align: right;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5), 0 0 0 1px rgba(0, 195, 140, 0.2);
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 195, 140, 0.3);
+  }
+
+  .modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  /* עיצוב מותאם למובייל עבור החלון הקופץ */
+  @media screen and (max-width: 768px) {
+    .modal-content {
+      margin: 15% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+    
+    .modal-content h2 {
+      font-size: 1.2rem;
+      margin-top: 25px;
+    }
+    
+    .modal-content p {
+      margin: 12px 0;
+      font-size: 0.9rem;
+    }
+    
+    .close {
+      color: #00c38c !important;
+      top: 10px;
+      left: 15px;
+      font-size: 32px;
+      z-index: 9999;
+      background-color: rgba(25, 39, 56, 0.9);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0,195,140,0.5);
+    }
+  }
+
+  .close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .close:hover {
+    color: #00c38c;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 195, 140, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .slogan-modal {
+    z-index: 1001; /* Make sure it's above the other modal */
+  }
+  
+  .slogan-modal h2 {
+    color: #00c38c;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .slogan-modal ul {
+    text-align: right;
+    direction: rtl;
+    margin-right: 15px;
+    padding-right: 20px;
+  }
+  
+  .slogan-modal p {
+    margin: 15px 0;
+    line-height: 1.5;
+  }
+
+  .slogan-modal li {
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .slogan-modal li:before {
+    content: "✓";
+    color: #00c38c;
+    position: absolute;
+    right: -20px;
+  }
+
+  @keyframes modalopen {
+    from {opacity: 0; transform: scale(0.8);}
+    to {opacity: 1; transform: scale(1);}
+  }
+  
+  .modal-title {
+    color: #00c38c;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+  
+  .modal-title:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0,195,140,0), rgba(0,195,140,0.8), rgba(0,195,140,0));
+  }
+
+  /* Privacy Policy Modal */
+  .privacy-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
+  .privacy-content h4 {
+    color: #00c38c;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .privacy-content ul {
+    padding-right: 20px;
+    margin: 10px 0;
+  }
+
+  .privacy-content li {
+    margin-bottom: 5px;
+  }
+</style>
+
+<!-- Modal Templates - HTML -->
+<!-- מודאל "איך זה עובד" -->
+<div id="howItWorksModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeHowItWorksModal">&times;</span>
+    <h2 class="modal-title">איך זה באמת עובד – ולמה כולם מצטרפים?</h2>
+    <p>אנחנו מעל 15 שנה עובדים מול מפעלים מהגדולים בעולם. עד היום – זה היה רק לעסקים.</p>
+    <p>אבל עכשיו? החלטנו לשנות את חוקי המשחק.</p>
+    <p>🎥 כל שבוע אנחנו מוצר חדש – בדיוק ממ"ל אנחנו מכירים באופן אישי.</p>
+    <p>💬 אנחנו דואגים לחוזים, בודקים תקנים (משרד הבריאות, FDA) ומנהלים את כל העסקה – בשבילכם.</p>
+    <p>🚢 אנחנו מייבאים את כל המכולה לישראל ומובילים עד הבית – דרך חברת שילוח מקצועית.</p>
+    <p>✅ בלי פערי תיווך. בלי סוכנים. בלי לשלם מראש.</p>
+    <p>✅ רק אם מצטרפים מספיק – כולם משלמים פחות. פשוט.</p>
+    <p>אנחנו לא רק מוכרים – אנחנו מאחדים.</p>
+    <p>אנחנו כאן כדי לעזור לכולנו לחסוך ביוקר המחיה.</p>
+    <p>💚 תנו לכוח של הקבוצה לעבוד גם בשבילכם.</p>
+    <p>הצטרפו עכשיו – בלי סיכון, ובלי להתחייב.</p>
+  </div>
+</div>
+
+<!-- Slogan Modal -->
+<div id="sloganModal" class="modal slogan-modal">
+  <div class="modal-content">
+    <span class="close" id="closeSloganModal">&times;</span>
+    <h2 class="modal-title">למה בכלל קנייה קבוצתית?</h2>
+    <p>
+      יוקר המחיה בארץ שובר שיאים. אנחנו משלמים יותר – ומקבלים פחות. מוצרים שמתומחרים פי 2 ו-3 ממחירם האמיתי, רק כי אנחנו קונים לבד, בארץ, דרך מתווכים.
+    </p>
+    <p>
+      כאן אנחנו משנים את המשחק – בקנייה קבוצתית כולנו מתאגדים יחד, ומבצעים רכישה ישירה מהמפעל – ללא חנויות, סוכנים או פערי תיווך. ככל שיותר רוכשים מצטרפים – המחיר יורד לכולם!
+    </p>
+
+    <h2>מי אנחנו?</h2>
+    <p>
+      אנחנו צוות עם ניסיון של מעל 15 שנה בייבוא וניהול עסקאות מול מפעלי ענק בסין. עד היום עבדנו עם עסקים – אבל עכשיו החלטנו להביא את הכוח הזה גם לציבור. כל משפחה בישראל צריכה לקבל מוצר איכותי – בלי להישחט.
+    </p>
+
+    <h2>איך זה עובד בפועל?</h2>
+    <ul>
+      <li>מצטרפים – בלי לשלם, בלי התחייבות.</li>
+      <li>מחכים לסיום הקמפיין (45 יום).</li>
+      <li>בודקים כמה הצטרפו – ולפי זה המחיר הסופי.</li>
+      <li>רק אם תרצו – משלמים ומקבלים את המוצר עד הבית.</li>
+    </ul>
+
+    <p style="font-weight:bold; color:#00ff99;">
+      ✅ אין סיכון. ✅ אין טריקים. ✅ רק חיסכון אמיתי – יחד.
+    </p>
+  </div>
+</div>
+
+<!-- Share Modal -->
+<div id="shareModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeShareModal()">&times;</span>
+    <h2 class="modal-title">שיתוף הקבוצה</h2>
+    <p>עזרו לחברים שלכם לחסוך! שתפו את קבוצת הרכישה:</p>
+    
+    <div class="share-buttons">
+      <a href="https://api.whatsapp.com/send?text=מצאתי%20קבוצת%20רכישה%20מטורפת%20לכורסת%20עיסוי%20-%20במקום%208000%20ש%22ח%20רק%204300%20ש%22ח.%20שווה%20בדיקה!%20https://vipogroupbuy.github.io" target="_blank" class="share-button whatsapp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+        שיתוף בווטסאפ
+      </a>
+      
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://vipogroupbuy.github.io" target="_blank" class="share-button facebook">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
+        שיתוף בפייסבוק
+      </a>
+      
+      <a href="mailto:?subject=קבוצת%20רכישה%20לכורסת%20עיסוי&body=מצאתי%20קבוצת%20רכישה%20מטורפת%20לכורסת%20עיסוי%20-%20במקום%208000%20ש%22ח%20רק%204300%20ש%22ח.%20שווה%20בדיקה!%20https://vipogroupbuy.github.io" class="share-button email">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email" />
+        שיתוף באימייל
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- מודאל מדיניות פרטיות -->
+<div id="privacyPolicyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closePrivacyPolicyModal">&times;</span>
+    <h2 class="modal-title">מדיניות פרטיות</h2>
+    <div class="privacy-content">
+      <p>ברוכים הבאים לאתר קבוצת הרכישה שלנו. אנו מכבדים את פרטיותך ומחויבים להגן על המידע האישי שלך.</p>
+      <h4>איסוף מידע</h4>
+      <p>אנו אוספים מידע אישי כגון שם, כתובת דוא"ל ומספר טלפון רק כאשר אתה מספק לנו אותו באופן וולונטרי בעת הרשמה לקבוצת רכישה.</p>
+      <h4>שימוש במידע</h4>
+      <p>אנו משתמשים במידע שנאסף כדי:</p>
+      <ul>
+        <li>לאפשר לך להשתתף בקבוצת הרכישה</li>
+        <li>ליצור איתך קשר בנוגע לקבוצת הרכישה</li>
+        <li>לשלוח לך עדכונים לגבי קבוצות רכישה עתידיות (אם ביקשת זאת)</li>
+      </ul>
+      <h4>שיתוף מידע</h4>
+      <p>איננו מוכרים, סוחרים או משכירים את המידע האישי שלך לצדדים שלישיים. אנו עשויים לשתף מידע עם ספקי שירות אמינים שעוזרים לנו בפעילות העסקית שלנו.</p>
+      <h4>אבטחה</h4>
+      <p>אנו מיישמים אמצעי אבטחה מתאימים כדי להגן על המידע האישי שלך מפני אובדן, גישה, שינוי או חשיפה בלתי מורשים.</p>
+      <h4>יצירת קשר</h4>
+      <p>אם יש לך שאלות כלשהן בנוגע למדיניות הפרטיות שלנו, אנא צור איתנו קשר ב-info@vipo.co.il</p>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for Modal functionality -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Modal elements
+    const modals = {
+      howItWorks: document.getElementById("howItWorksModal"),
+      slogan: document.getElementById("sloganModal"),
+      share: document.getElementById("shareModal"),
+      privacyPolicy: document.getElementById("privacyPolicyModal")
+    };
+    
+    // Close buttons
+    const closeButtons = document.querySelectorAll(".modal .close");
+    
+    // Open modal function with animation
+    window.openModal = function(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = "block";
+        setTimeout(() => {
+          modal.classList.add("show");
+        }, 10);
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      }
+    };
+    
+    // Close modal function with animation
+    window.closeModal = function(modal) {
+      if (modal) {
+        modal.classList.remove("show");
+        setTimeout(() => {
+          modal.style.display = "none";
+          document.body.style.overflow = ""; // Re-enable scrolling
+        }, 300);
+      }
+    };
+    
+    // Close modal when clicking the X
+    closeButtons.forEach(button => {
+      button.addEventListener("click", function() {
+        const modal = this.closest('.modal');
+        closeModal(modal);
+      });
+    });
+    
+    // Close modal when clicking outside of it
+    window.addEventListener("click", function(event) {
+      Object.values(modals).forEach(modal => {
+        if (event.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+    
+    // Specific modal open functions
+    window.openHowItWorksModal = function() {
+      openModal("howItWorksModal");
+    };
+    
+    window.openSloganModal = function() {
+      openModal("sloganModal");
+    };
+    
+    window.openShareModal = function() {
+      openModal("shareModal");
+    };
+    
+    window.openPrivacyPolicyModal = function() {
+      openModal("privacyPolicyModal");
+    };
+    
+    // Specific modal close functions
+    window.closeHowItWorksModal = function() {
+      closeModal(modals.howItWorks);
+    };
+    
+    window.closeSloganModal = function() {
+      closeModal(modals.slogan);
+    };
+    
+    window.closeShareModal = function() {
+      closeModal(modals.share);
+    };
+    
+    window.closePrivacyPolicyModal = function() {
+      closeModal(modals.privacyPolicy);
+    };
+    
+    // Assign closeModal functionality to specific close buttons by ID
+    const closeHowItWorksModal = document.getElementById("closeHowItWorksModal");
+    if (closeHowItWorksModal) {
+      closeHowItWorksModal.addEventListener("click", function() {
+        closeModal(modals.howItWorks);
+      });
+    }
+    
+    const closeSloganModal = document.getElementById("closeSloganModal");
+    if (closeSloganModal) {
+      closeSloganModal.addEventListener("click", function() {
+        closeModal(modals.slogan);
+      });
+    }
+    
+    const closePrivacyPolicyModal = document.getElementById("closePrivacyPolicyModal");
+    if (closePrivacyPolicyModal) {
+      closePrivacyPolicyModal.addEventListener("click", function() {
+        closeModal(modals.privacyPolicy);
+      });
+    }
+  });
+</script>
+
+<!-- CSS for Share buttons -->
+<style>
+  .share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    align-items: center;
+  }
+  
+  .share-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 80%;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .share-button img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .share-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  
+  .share-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .whatsapp {
+    background-color: #25d366;
+    border: 1px solid #128C7E;
+  }
+  
+  .facebook {
+    background-color: #1877f2;
+    border: 1px solid #0e5aa7;
+  }
+  
+  .email {
+    background-color: #d44638;
+    border: 1px solid #b23121;
+  }
+</style>
